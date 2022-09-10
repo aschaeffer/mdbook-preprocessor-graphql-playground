@@ -55,7 +55,7 @@ function createInstanceContainer(id) {
 function createInstance(container, config) {
   container.innerHTML = ''
   const instanceContainer = createInstanceContainer(container.id)
-  const header = createHeader(container, config.title, config.description, instanceContainer)
+  const header = createHeader(container, config.title, config.description, container)
   container.append(header, instanceContainer)
   return instanceContainer
 }

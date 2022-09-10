@@ -30,4 +30,8 @@
    cp assets/graphql-playground.css <book_dir>
    cp assets/graphql-playground.js <book_dir>
    cp assets/graphql-playground-react-middleware.js <book_dir>
+   cp assets/images/* <book_dir>/images/
     ```
+3. You may have to adjust the CSS
+4. Create query files
+5. Create a config file

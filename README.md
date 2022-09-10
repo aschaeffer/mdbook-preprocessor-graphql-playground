@@ -9,7 +9,7 @@
 
 > A preprocessor for mdbook to add GraphQL playgrounds.
 
-[![preview](assets/images/screenshot.png)](assets/images/screenshot.png)
+[![preview](book/src/images/screenshot.png)](book/src/images/screenshot.png)
 
 ## Usage
 

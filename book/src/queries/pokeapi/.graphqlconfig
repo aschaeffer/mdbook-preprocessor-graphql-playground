@@ -1,0 +1,12 @@
+{
+  "name": "beta.pokeapi.co",
+  "extensions": {
+    "endpoints": {
+      "beta.pokeapi.co": {
+        "url": "https://beta.pokeapi.co/graphql/v1beta",
+        "introspect": true
+      }
+    }
+  },
+  "schemaPath": "./schema.graphql"
+}

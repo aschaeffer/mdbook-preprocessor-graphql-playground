@@ -1,0 +1,15 @@
+{
+  "title": "The Pokemon API",
+  "description": "All the Pokémon data you'll ever need in one place, easily accessible through a modern GraphQL API.",
+  "endpoint": "https://beta.pokeapi.co/graphql/v1beta",
+  "tabs": [
+    {
+      "name": "Generations",
+      "url": "/queries/pokeapi/generations.query.graphql"
+    },
+    {
+      "name": "Generation 3 Species",
+      "url": "/queries/pokeapi/generation3-species.query.graphql"
+    }
+  ]
+}

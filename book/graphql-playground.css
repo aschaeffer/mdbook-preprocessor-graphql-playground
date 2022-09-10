@@ -31,7 +31,7 @@ h3.graphql-playground-heading {
 .graphql-playground-heading:before {
     content: "";
     display: block;
-    background: url("/images/graphql-wordmark-white.svg") no-repeat;
+    background: url("images/graphql-wordmark-white.svg") no-repeat;
     background-size: 100px;
     width: 100px;
     height: 50px;

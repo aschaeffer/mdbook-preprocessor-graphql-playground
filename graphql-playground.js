@@ -23,7 +23,7 @@ function createGraphQLPlaygroundInstance(container, tabs, endpoint) {
   document.documentElement.firstChild.appendChild(script);
 }
 
-function createHeader(parent, title, description) {
+function createHeader(parent, title, description, container) {
   const header = document.createElement('div')
   header.classList.add('graphql-playground-header')
   const heading = document.createElement('h3')
@@ -55,7 +55,7 @@ function createInstanceContainer(id) {
 function createInstance(container, config) {
   container.innerHTML = ''
   const instanceContainer = createInstanceContainer(container.id)
-  const header = createHeader(container, config.title, config.description)
+  const header = createHeader(container, config.title, config.description, container)
   container.append(header, instanceContainer)
   return instanceContainer
 }

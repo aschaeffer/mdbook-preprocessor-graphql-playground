@@ -1,11 +1,15 @@
 const DEFAULT_ENDPOINT = 'http://localhost:31415/graphql'
 
+function getBaseURL() {
+  return window.location.href.substring(0, window.location.href.lastIndexOf('/'))
+}
+
 function createGraphQLPlaygroundInstance(container, tabs, endpoint) {
   if (typeof GraphQLPlayground !== 'undefined') {
     delete GraphQLPlayground
   }
   const script = document.createElement('script')
-  script.src = '/graphql-playground-react-middleware.js'
+  script.src = getBaseURL() + '/graphql-playground-react-middleware.js'
   script.onload = function () {
     const GraphQLPlaygroundInstance = GraphQLPlayground
     GraphQLPlaygroundInstance.init(
@@ -57,11 +61,13 @@ function createInstance(container, config) {
 }
 
 function fetchConfig(url) {
+  url = getBaseURL() + url
   console.log(`Fetching config from ${url}`)
   return fetch(url).then((response) => response.json())
 }
 
 function fetchQuery(url) {
+  url = getBaseURL() + url
   console.log(`Fetching query from ${url}`)
   return fetch(url).then((response) => response.text())
 }

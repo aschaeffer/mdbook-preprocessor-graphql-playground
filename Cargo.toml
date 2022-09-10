@@ -22,4 +22,5 @@ lto = true
 strip = "symbols"
 
 [[bin]]
-name = "mdbook-preprocessor-graphql-playground"
+name = "mdbook-graphql-playground"
+path = "src/main.rs"

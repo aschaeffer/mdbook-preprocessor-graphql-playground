@@ -1,0 +1,15 @@
+{
+  "title": "The Star Wars API",
+  "description": "Explore the star wars API using mdbook-preprocessor-graphql-playground",
+  "endpoint": "https://swapi-graphql.netlify.app/.netlify/functions/index",
+  "tabs": [
+    {
+      "name": "All Planets",
+      "url": "/queries/all-planets.query.graphql"
+    },
+    {
+      "name": "All Films",
+      "url": "/queries/all-films.query.graphql"
+    }
+  ]
+}

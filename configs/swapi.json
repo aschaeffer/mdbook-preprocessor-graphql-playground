@@ -5,11 +5,15 @@
   "tabs": [
     {
       "name": "All Planets",
-      "url": "/queries/all-planets.query.graphql"
+      "url": "/queries/swapi/all-planets.query.graphql"
+    },
+    {
+      "name": "All Species",
+      "url": "/queries/swapi/all-species.query.graphql"
     },
     {
       "name": "All Films",
-      "url": "/queries/all-films.query.graphql"
+      "url": "/queries/swapi/all-films.query.graphql"
     }
   ]
 }

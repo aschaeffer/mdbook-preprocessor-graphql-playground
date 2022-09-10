@@ -1,0 +1,13 @@
+query AllSpeciesQuery {
+  allSpecies {
+    species {
+      name
+      classification
+      averageHeight
+      averageLifespan
+      homeworld {
+        name
+      }
+    }
+  }
+}

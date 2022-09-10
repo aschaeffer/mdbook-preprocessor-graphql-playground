@@ -30,13 +30,13 @@ h3.graphql-playground-heading {
 
 .graphql-playground-heading:before {
     content: "";
+    position: absolute;
     display: block;
     background: url("images/graphql-wordmark-white.svg") no-repeat;
-    background-size: 100px;
-    width: 100px;
-    height: 50px;
-    float: left;
-    margin: 0 10px 0 10px;
+    background-size: 120px;
+    width: 120px;
+    height: 58px;
+    margin: -24px 10px -24px 10px;
 }
 
 .graphql-playground-description {
@@ -46,23 +46,16 @@ h3.graphql-playground-heading {
     border-right: 3px solid #9e9e9e;
 }
 
+.graphql-playground-description div {
+    display: block;
+    width: 100%;
+    margin: 0 15px;
+}
+
 .navy :is(.graphql-playground-description):is(.info, .todo) {
     border-left: 3px solid #9e9e9e;
     border-right: 3px solid #e535ab;
     border-radius: 0;
-}
-
-.graphql-playground-description:before {
-    content: "";
-    display: block;
-    mask-image: var(--md-admonition-icon--failure) no-repeat;
-    -webkit-mask-image: var(--md-details-icon);
-    background-color: #e535ab;
-    background-size: 30px;
-    width: 30px;
-    height: 30px;
-    float: left;
-    margin: 10px;
 }
 
 graphql-playground-container {

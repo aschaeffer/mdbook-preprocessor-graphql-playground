@@ -1,0 +1,45 @@
+name: Book
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "book/**"
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "book/**"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: 'latest'
+
+      - name: Install preprocessor mdbook-preprocessor-graphql-playground
+        uses: actions-rs/install@v0.1
+        with:
+          crate: mdbook-preprocessor-graphql-playground
+          version: latest
+          use-tool-cache: true
+
+      - name: Build Book
+        working-directory: ./book
+        run: mdbook build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book/book

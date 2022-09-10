@@ -1,6 +1,6 @@
 const DEFAULT_ENDPOINT = 'http://localhost:31415/graphql'
 
-function createGraphQLPlaygroundInstance(container, endpoint, tabs) {
+function createGraphQLPlaygroundInstance(container, tabs, endpoint) {
   if (typeof GraphQLPlayground !== 'undefined') {
     delete GraphQLPlayground
   }
@@ -23,9 +23,7 @@ function createHeader(parent, title, description) {
   const header = document.createElement('div')
   header.classList.add('graphql-playground-header')
   const heading = document.createElement('h3')
-  heading.classList.add('graphql-playground-heading')
-  heading.classList.add('admonition')
-  heading.classList.add('info')
+  heading.classList.add('graphql-playground-heading', 'admonition', 'info')
   heading.innerHTML = title
   heading.title = `GraphQL Example "${title}": Click to open in fullscreen!`
   heading.addEventListener('click', function () {
@@ -36,9 +34,7 @@ function createHeader(parent, title, description) {
     }
   })
   const descriptionNode = document.createElement('div')
-  descriptionNode.classList.add('graphql-playground-description')
-  descriptionNode.classList.add('admonition')
-  descriptionNode.classList.add('info')
+  descriptionNode.classList.add('graphql-playground-description', 'admonition', 'info')
   const descriptionInner = document.createElement('div')
   descriptionInner.innerHTML = `<p>${description}</p>`
   descriptionNode.append(descriptionInner)
@@ -60,16 +56,18 @@ function createInstance(container, config) {
   return instanceContainer
 }
 
-function fetchQuery(url, endpoint) {
-  endpoint = endpoint || DEFAULT_ENDPOINT
-  console.log('fetchQuery', name, url, endpoint)
+function fetchConfig(url) {
+  console.log(`Fetching config from ${url}`)
+  return fetch(url).then((response) => response.json())
+}
+
+function fetchQuery(url) {
+  console.log(`Fetching query from ${url}`)
   return fetch(url).then((response) => response.text())
 }
 
 function getTabConfig(name, url, endpoint) {
-  endpoint = endpoint || DEFAULT_ENDPOINT
-  console.log('getTabConfig', name, url, endpoint)
-  return fetchQuery(url, endpoint).then(query => {
+  return fetchQuery(url).then(query => {
     return {
       endpoint,
       name,
@@ -79,40 +77,44 @@ function getTabConfig(name, url, endpoint) {
 }
 
 function getTabConfigs(config, endpoint) {
-  endpoint = endpoint || DEFAULT_ENDPOINT
-  console.log('getTabConfigs', config, endpoint)
   return Promise.all(
     config.tabs.map(tab => getTabConfig(tab.name, tab.url, endpoint))
   )
 }
 
-function getContainerAndConfig(id) {
-  const container = document.getElementById(id)
-  const config = JSON.parse(container.innerHTML)
-  return {
-    container,
-    config
-  }
+function getContainer(id) {
+  return document.getElementById(id)
 }
 
-window.GraphQLPlaygroundInstance = function (id, endpoint) {
+window.GraphQLPlaygroundInstance = function (id, configUrl, endpoint) {
+  if (!id) {
+    console.error(`Missing id`)
+    return
+  }
+  if (!configUrl) {
+    console.error(`Missing src`)
+    return
+  }
   endpoint = endpoint || DEFAULT_ENDPOINT
-  const { container, config } = getContainerAndConfig(id)
-  console.log('GraphQLPlaygroundInstance', id, endpoint, container, config)
-  const instanceContainer = createInstance(container, config)
-  getTabConfigs(config).then(tabs => {
-    console.log(tabs)
-    createGraphQLPlaygroundInstance(
-      instanceContainer,
-      endpoint,
-      tabs
-    )
+  const container = getContainer(id)
+  fetchConfig(configUrl).then(config => {
+    endpoint = config.endpoint || endpoint
+    console.log(`Initializing GraphQLPlaygroundInstance ${id} ${endpoint}`, config)
+    const instanceContainer = createInstance(container, config)
+    getTabConfigs(config, endpoint).then(tabs => {
+      console.log(tabs)
+      createGraphQLPlaygroundInstance(
+        instanceContainer,
+        tabs,
+        endpoint
+      )
+    })
   })
 }
 
 window.addEventListener('load', function () {
   const playgrounds =  Array.from(document.getElementsByTagName('graphql-playground'))
   for (let playground of playgrounds) {
-    window.GraphQLPlaygroundInstance(playground.id)
+    window.GraphQLPlaygroundInstance(playground.id, playground.getAttribute('src'))
   }
 })

@@ -1,0 +1,18 @@
+[book]
+authors = [
+    "Andreas Schaeffer"
+]
+language = "en"
+multilingual = false
+src = "src"
+title = "Inexor Reactive Graph Flow"
+
+[preprocessor.graphql-playground]
+command = "mdbook-graphql-playground"
+renderer = ["html"]
+
+[output]
+
+[output.html]
+additional-js = ["././graphql-playground-react-middleware.js", "././graphql-playground.js"]
+additional-css = ["././graphql-playground.css"]

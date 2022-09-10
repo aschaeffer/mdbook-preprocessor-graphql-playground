@@ -1,0 +1,12 @@
+{
+  "name": "swapi-graphql.netlify.app",
+  "extensions": {
+    "endpoints": {
+      "swapi-graphql.netlify.app": {
+        "url": "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        "introspect": true
+      }
+    }
+  },
+  "schemaPath": "./schema.graphql"
+}

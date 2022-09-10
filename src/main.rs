@@ -11,10 +11,7 @@ use uuid::Uuid;
 
 fn main() {
     init_logging();
-    mdbook_preprocessor_boilerplate::run(
-        GraphQLPlaygroundPreprocessor,
-        "A preprocessor for mdbook to add GraphQL playgrounds.",
-    );
+    mdbook_preprocessor_boilerplate::run(GraphQLPlaygroundPreprocessor, "A preprocessor for mdbook to add GraphQL playgrounds.");
 }
 
 struct GraphQLPlaygroundPreprocessor;
@@ -31,11 +28,7 @@ impl Preprocessor for GraphQLPlaygroundPreprocessor {
                 chapter.content = match tera().render_str(chapter.content.as_str(), &context) {
                     Ok(rendered) => rendered, // chapter.content.to_string()
                     Err(e) => {
-                        warn!(
-                            "Failed to render chapter \"{}\": {}",
-                            chapter.name.as_str(),
-                            e
-                        );
+                        warn!("Failed to render chapter \"{}\": {}", chapter.name.as_str(), e);
                         chapter.content.to_string()
                     }
                 }
@@ -50,10 +43,7 @@ impl Preprocessor for GraphQLPlaygroundPreprocessor {
 }
 
 fn graphql_playground(args: &HashMap<String, Value>) -> tera::Result<Value> {
-    let id = args
-        .get("id")
-        .and_then(|id| id.as_str())
-        .map_or(Uuid::new_v4().to_string(), |id| id.into());
+    let id = args.get("id").and_then(|id| id.as_str()).map_or(Uuid::new_v4().to_string(), |id| id.into());
     match args.get("config") {
         Some(config_location) => match to_value(format!(
             "<graphql-playground id=\"{}\" src=\"{}\">\n</graphql-playground>\n",

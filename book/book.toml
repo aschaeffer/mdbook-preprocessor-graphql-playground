@@ -5,7 +5,7 @@ authors = [
 language = "en"
 multilingual = false
 src = "src"
-title = "Inexor Reactive Graph Flow"
+title = "mdbook-preprocessor-graphql-playground"
 
 [preprocessor.graphql-playground]
 command = "mdbook-graphql-playground"

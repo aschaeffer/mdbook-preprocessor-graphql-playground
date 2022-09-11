@@ -1,7 +1,19 @@
+@media only screen and (min-width: 1280px) and (max-width: 1600px) {
+    graphql-playground {
+        margin-left: -250px;
+        margin-right: -250px;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    graphql-playground {
+        margin-left: -450px;
+        margin-right: -450px;
+    }
+}
+
 graphql-playground {
     display: block;
-    margin-left: -250px;
-    margin-right: -250px;
 }
 
 .graphql-playground-header {

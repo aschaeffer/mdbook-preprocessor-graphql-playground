@@ -12,6 +12,10 @@
 
 [![preview](book/src/images/screenshot.png)](book/src/images/screenshot.png)
 
+## Demo
+
+https://aschaeffer.github.io/mdbook-preprocessor-graphql-playground/
+
 ## Usage
 
 1. Install `mdbook-preprocessor-graphql-playground`

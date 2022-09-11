@@ -37,22 +37,22 @@
     cp assets/graphql-playground-react-middleware.js <book_dir>
     cp assets/images/* <book_dir>/src/images/
     ```
-4. Create a config file(s)
-    ```shell
-    mkdir <book_dir>/configs
-    nano <book_dir>/configs/swapi.json
-    ```
-5. Create query file(s)
+4. Create a [query file](#query-files)
     ```shell
     mkdir -p <book_dir>/queries/swapi
     nano <book_dir>/queries/swapi/all-planets.query.graphql
+    ```
+5. Create a [config file](#config-files)
+    ```shell
+    mkdir <book_dir>/configs
+    nano <book_dir>/configs/swapi.json
     ```
 6. Embed the GraphQL Playground in your markdown files
     ```
     {{ graphql_playground(config="/configs/swapi.json") }}
     ```
 
-### The query files
+### Query files
 
 * You can have multiple queries
 
@@ -67,7 +67,7 @@ query AllPlanetsQuery {
 }
 ```
 
-### The config files
+### Config files
 
 * You can have multiple config files
 * You can have multiple tabs, each refers to a query

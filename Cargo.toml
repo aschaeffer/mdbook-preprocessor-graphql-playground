@@ -6,6 +6,7 @@ edition = "2021"
 authors = ["Andreas Schaeffer <andreas@schaeffernet.de>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/aschaeffer/mdbook-preprocessor-graphql-playground"
 keywords = ["mdbook", "mdbook-plugins", "mdbook-preprocessor", "graphql", "playground"]
 
 [dependencies]

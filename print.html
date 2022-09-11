@@ -77,7 +77,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="TheStarWarsApi.html"><strong aria-hidden="true">1.</strong> The Star Wars API</a></li><li class="chapter-item expanded "><a href="PokeApi.html"><strong aria-hidden="true">2.</strong> PokeAPI</a></li><li class="chapter-item expanded "><a href="Why.html"><strong aria-hidden="true">3.</strong> Why</a></li><li class="chapter-item expanded "><a href="Changelog.html"><strong aria-hidden="true">4.</strong> Changelog</a></li><li class="chapter-item expanded "><a href="License.html"><strong aria-hidden="true">5.</strong> License</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="TheStarWarsApi.html"><strong aria-hidden="true">1.</strong> The Star Wars API</a></li><li class="chapter-item expanded "><a href="PokeApi.html"><strong aria-hidden="true">2.</strong> PokeAPI</a></li><li class="chapter-item expanded "><a href="Why.html"><strong aria-hidden="true">3.</strong> Why</a></li><li class="chapter-item expanded "><a href="Usage.html"><strong aria-hidden="true">4.</strong> Usage</a></li><li class="chapter-item expanded "><a href="Changelog.html"><strong aria-hidden="true">5.</strong> Changelog</a></li><li class="chapter-item expanded "><a href="License.html"><strong aria-hidden="true">6.</strong> License</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,7 +142,7 @@
 <p>We've taken all the rich contextual stuff from the universe and formatted into something easier to consume with software. Then we went and stuck an API on the front so you can access it all!</p>
 </blockquote>
 <h2 id="the-graphql-playground"><a class="header" href="#the-graphql-playground">The GraphQL Playground</a></h2>
-<graphql-playground id="c9fcea51-7258-4cf7-b9da-215e493ab162" src="/configs/swapi.json">
+<graphql-playground id="7d268684-bd08-441c-a9aa-369e93da324f" src="/configs/swapi.json">
 </graphql-playground>
 <h2 id="credits"><a class="header" href="#credits">Credits</a></h2>
 <ul>
@@ -155,12 +155,89 @@
 series. We've covered everything from Pokémon to Berry Flavors.</p>
 </blockquote>
 <h2 id="the-graphql-playground-1"><a class="header" href="#the-graphql-playground-1">The GraphQL Playground</a></h2>
-<graphql-playground id="088a6147-103b-420f-a440-b0666a11f3f2" src="/configs/pokeapi.json">
+<graphql-playground id="c27023da-1359-4aea-a88c-5898b8f46dba" src="/configs/pokeapi.json">
 </graphql-playground>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="why"><a class="header" href="#why">Why</a></h1>
 <blockquote>
 <p>Interactive Documentation: https://inexorgame.github.io/inexor-rgf-application/Plugins_Arithmetic.html</p>
 </blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="usage"><a class="header" href="#usage">Usage</a></h1>
+<ol>
+<li>Install <code>mdbook-preprocessor-graphql-playground</code>
+<pre><code class="language-shell">cargo install mdbook-preprocessor-graphql-playground
+</code></pre>
+</li>
+<li>Add to <code>book.toml</code>:
+<pre><code class="language-toml">[preprocessor.graphql-playground]
+command = &quot;mdbook-graphql-playground&quot;
+renderer = [&quot;html&quot;]
+
+[output]
+
+[output.html]
+additional-js = [&quot;graphql-playground-react-middleware.js&quot;, &quot;graphql-playground.js&quot;]
+additional-css = [&quot;graphql-playground.css&quot;]
+</code></pre>
+</li>
+<li>Copy assets into the book root directory:
+<pre><code class="language-shell">cp assets/graphql-playground.css &lt;book_dir&gt;
+cp assets/graphql-playground.js &lt;book_dir&gt;
+cp assets/graphql-playground-react-middleware.js &lt;book_dir&gt;
+cp assets/images/* &lt;book_dir&gt;/src/images/
+</code></pre>
+</li>
+<li>Create a <a href="Usage.html#query-files">query file</a>
+<pre><code class="language-shell">mkdir -p &lt;book_dir&gt;/queries/swapi
+nano &lt;book_dir&gt;/queries/swapi/all-planets.query.graphql
+</code></pre>
+</li>
+<li>Create a <a href="Usage.html#config-files">config file</a>
+<pre><code class="language-shell">mkdir &lt;book_dir&gt;/configs
+nano &lt;book_dir&gt;/configs/swapi.json
+</code></pre>
+</li>
+<li>Embed the GraphQL Playground in your markdown files
+<pre><code>{{ graphql_playground(config=&quot;/configs/swapi.json&quot;) }}
+</code></pre>
+</li>
+</ol>
+<h3 id="query-files"><a class="header" href="#query-files">Query files</a></h3>
+<ul>
+<li>You can have multiple queries</li>
+</ul>
+<pre><code class="language-graphql">query AllPlanetsQuery {
+  allPlanets {
+    planets {
+      name
+      diameter
+    }
+  }
+}
+</code></pre>
+<h3 id="config-files"><a class="header" href="#config-files">Config files</a></h3>
+<ul>
+<li>You can have multiple config files</li>
+<li>You can have multiple tabs, each refers to a query</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;The Star Wars API&quot;,
+  &quot;description&quot;: &quot;Explore the star wars API using mdbook-preprocessor-graphql-playground&quot;,
+  &quot;endpoint&quot;: &quot;https://swapi-graphql.netlify.app/.netlify/functions/index&quot;,
+  &quot;tabs&quot;: [
+    {
+      &quot;name&quot;: &quot;All Planets&quot;,
+      &quot;url&quot;: &quot;/queries/swapi/all-planets.query.graphql&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="use-a-config-in-the-book"><a class="header" href="#use-a-config-in-the-book">Use a config in the book</a></h3>
+<ol>
+<li>Embed with the <code>graphql_playground</code> function</li>
+<li>Specify the location of the config file with the <code>config</code> parameter</li>
+</ol>
+<pre><code>{{ graphql_playground(config=&quot;/configs/swapi.json&quot;) }}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="changelog"><a class="header" href="#changelog">Changelog</a></h1>
 <p>All notable changes to this project will be documented in this file.</p>
 <p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,

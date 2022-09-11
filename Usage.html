@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Changelog - mdbook-preprocessor-graphql-playground</title>
+        <title>Usage - mdbook-preprocessor-graphql-playground</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="TheStarWarsApi.html"><strong aria-hidden="true">1.</strong> The Star Wars API</a></li><li class="chapter-item expanded "><a href="PokeApi.html"><strong aria-hidden="true">2.</strong> PokeAPI</a></li><li class="chapter-item expanded "><a href="Why.html"><strong aria-hidden="true">3.</strong> Why</a></li><li class="chapter-item expanded "><a href="Usage.html"><strong aria-hidden="true">4.</strong> Usage</a></li><li class="chapter-item expanded "><a href="Changelog.html" class="active"><strong aria-hidden="true">5.</strong> Changelog</a></li><li class="chapter-item expanded "><a href="License.html"><strong aria-hidden="true">6.</strong> License</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="TheStarWarsApi.html"><strong aria-hidden="true">1.</strong> The Star Wars API</a></li><li class="chapter-item expanded "><a href="PokeApi.html"><strong aria-hidden="true">2.</strong> PokeAPI</a></li><li class="chapter-item expanded "><a href="Why.html"><strong aria-hidden="true">3.</strong> Why</a></li><li class="chapter-item expanded "><a href="Usage.html" class="active"><strong aria-hidden="true">4.</strong> Usage</a></li><li class="chapter-item expanded "><a href="Changelog.html"><strong aria-hidden="true">5.</strong> Changelog</a></li><li class="chapter-item expanded "><a href="License.html"><strong aria-hidden="true">6.</strong> License</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,24 +135,92 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="changelog"><a class="header" href="#changelog">Changelog</a></h1>
-<p>All notable changes to this project will be documented in this file.</p>
-<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
-and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
-<h2 id="010---2022-09-10"><a class="header" href="#010---2022-09-10">[0.1.0] - 2022-09-10</a></h2>
-<h3 id="added"><a class="header" href="#added">Added</a></h3>
+                        <h1 id="usage"><a class="header" href="#usage">Usage</a></h1>
+<ol>
+<li>Install <code>mdbook-preprocessor-graphql-playground</code>
+<pre><code class="language-shell">cargo install mdbook-preprocessor-graphql-playground
+</code></pre>
+</li>
+<li>Add to <code>book.toml</code>:
+<pre><code class="language-toml">[preprocessor.graphql-playground]
+command = &quot;mdbook-graphql-playground&quot;
+renderer = [&quot;html&quot;]
+
+[output]
+
+[output.html]
+additional-js = [&quot;graphql-playground-react-middleware.js&quot;, &quot;graphql-playground.js&quot;]
+additional-css = [&quot;graphql-playground.css&quot;]
+</code></pre>
+</li>
+<li>Copy assets into the book root directory:
+<pre><code class="language-shell">cp assets/graphql-playground.css &lt;book_dir&gt;
+cp assets/graphql-playground.js &lt;book_dir&gt;
+cp assets/graphql-playground-react-middleware.js &lt;book_dir&gt;
+cp assets/images/* &lt;book_dir&gt;/src/images/
+</code></pre>
+</li>
+<li>Create a <a href="#query-files">query file</a>
+<pre><code class="language-shell">mkdir -p &lt;book_dir&gt;/queries/swapi
+nano &lt;book_dir&gt;/queries/swapi/all-planets.query.graphql
+</code></pre>
+</li>
+<li>Create a <a href="#config-files">config file</a>
+<pre><code class="language-shell">mkdir &lt;book_dir&gt;/configs
+nano &lt;book_dir&gt;/configs/swapi.json
+</code></pre>
+</li>
+<li>Embed the GraphQL Playground in your markdown files
+<pre><code>{{ graphql_playground(config=&quot;/configs/swapi.json&quot;) }}
+</code></pre>
+</li>
+</ol>
+<h3 id="query-files"><a class="header" href="#query-files">Query files</a></h3>
 <ul>
-<li>Initial release</li>
+<li>You can have multiple queries</li>
 </ul>
+<pre><code class="language-graphql">query AllPlanetsQuery {
+  allPlanets {
+    planets {
+      name
+      diameter
+    }
+  }
+}
+</code></pre>
+<h3 id="config-files"><a class="header" href="#config-files">Config files</a></h3>
+<ul>
+<li>You can have multiple config files</li>
+<li>You can have multiple tabs, each refers to a query</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;The Star Wars API&quot;,
+  &quot;description&quot;: &quot;Explore the star wars API using mdbook-preprocessor-graphql-playground&quot;,
+  &quot;endpoint&quot;: &quot;https://swapi-graphql.netlify.app/.netlify/functions/index&quot;,
+  &quot;tabs&quot;: [
+    {
+      &quot;name&quot;: &quot;All Planets&quot;,
+      &quot;url&quot;: &quot;/queries/swapi/all-planets.query.graphql&quot;
+    }
+  ]
+}
+</code></pre>
+<h3 id="use-a-config-in-the-book"><a class="header" href="#use-a-config-in-the-book">Use a config in the book</a></h3>
+<ol>
+<li>Embed with the <code>graphql_playground</code> function</li>
+<li>Specify the location of the config file with the <code>config</code> parameter</li>
+</ol>
+<pre><code>{{ graphql_playground(config=&quot;/configs/swapi.json&quot;) }}
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="Usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="Why.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="License.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="Changelog.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -161,10 +229,10 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="Usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="Why.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="License.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="Changelog.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

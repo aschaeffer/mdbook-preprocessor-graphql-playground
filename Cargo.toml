@@ -1,7 +1,7 @@
 [package]
 name = "mdbook-preprocessor-graphql-playground"
 description = "A preprocessor for mdbook to add GraphQL playgrounds."
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Andreas Schaeffer <andreas@schaeffernet.de>"]
 license = "MIT"

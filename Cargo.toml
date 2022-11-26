@@ -20,7 +20,7 @@ mdbook-preprocessor-boilerplate = "0.1"
 serde = "1.0"
 serde_json = "1.0"
 tera = "1"
-uuid = { version = "1.1", features = ["v4"] }
+uuid = { version = "1.2", features = ["v4"] }
 
 [profile.dev]
 opt-level = 0

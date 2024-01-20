@@ -12,7 +12,7 @@ keywords = ["mdbook", "mdbook-plugins", "mdbook-preprocessor", "graphql", "playg
 
 [dependencies]
 anyhow = "1.0"
-env_logger = "0.10"
+env_logger = "0.11"
 chrono = "0.4"
 log = "0.4"
 mdbook = "0.4"

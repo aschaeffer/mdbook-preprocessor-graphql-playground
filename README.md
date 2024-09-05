@@ -3,7 +3,7 @@
 [<img src="https://img.shields.io/badge/Docs-mdBook-brightgreen">](https://aschaeffer.github.io/mdbook-preprocessor-graphql-playground/)
 [![Crate](https://img.shields.io/crates/v/mdbook-preprocessor-graphql-playground.svg)](https://crates.io/crates/mdbook-preprocessor-graphql-playground)
 [<img src="https://img.shields.io/badge/Language-Rust-brightgreen">](https://www.rust-lang.org/)
-[<img src="https://img.shields.io/github/workflow/status/aschaeffer/mdbook-preprocessor-graphql-playground/Rust">](https://github.com/aschaeffer/mdbook-preprocessor-graphql-playground/actions?query=workflow%3ARust)
+[<img src="https://img.shields.io/github/actions/workflow/status/aschaeffer/mdbook-preprocessor-graphql-playground/rust.yml">](https://github.com/aschaeffer/mdbook-preprocessor-graphql-playground/actions?query=workflow%3ARust)
 [<img src="https://img.shields.io/github/last-commit/aschaeffer/mdbook-preprocessor-graphql-playground">]()
 [<img src="https://img.shields.io/github/languages/code-size/aschaeffer/mdbook-preprocessor-graphql-playground">]()
 [![downloads](https://img.shields.io/crates/d/mdbook-preprocessor-graphql-playground.svg)](https://crates.io/crates/mdbook-preprocessor-graphql-playground)

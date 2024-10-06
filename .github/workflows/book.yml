@@ -5,40 +5,45 @@ on:
     branches: [ main ]
     paths:
       - "book/**"
+      - "CHANGELOG.md"
+      - "LICENSE.md"
+      - "README.md"
+      - ".github/workflows/book.yml"
   pull_request:
     branches: [ main ]
     paths:
       - "book/**"
+      - "CHANGELOG.md"
+      - "LICENSE.md"
+      - "README.md"
+      - ".github/workflows/book.yml"
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  deploy:
+  book:
+    name: Book
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+      - name: Install rust toolchain
+        uses: dtolnay/rust-toolchain@stable
       - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v1
+        uses: peaceiris/actions-mdbook@v2
         with:
           mdbook-version: 'latest'
-
       - name: Install preprocessor mdbook-preprocessor-graphql-playground
-        uses: actions-rs/install@v0.1
+        uses: taiki-e/cache-cargo-install-action@v2
         with:
-          crate: mdbook-preprocessor-graphql-playground
-          version: latest
-          use-tool-cache: true
-
+          tool: mdbook-preprocessor-graphql-playground
       - name: Build Book
         working-directory: ./book
         run: mdbook build
-
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

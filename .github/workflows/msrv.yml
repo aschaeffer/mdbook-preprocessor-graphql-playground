@@ -5,11 +5,15 @@ on:
     branches: [ main ]
     paths:
       - "Cargo.toml"
+      - "Cargo.lock"
+      - "CHANGELOG.md"
       - ".github/workflows/msrv.yml"
   pull_request:
     branches: [ main ]
     paths:
       - "Cargo.toml"
+      - "Cargo.lock"
+      - "CHANGELOG.md"
       - ".github/workflows/msrv.yml"
 
 env:

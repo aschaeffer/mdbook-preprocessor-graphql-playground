@@ -1,4 +1,6 @@
-# mdbook-preprocessor-graphql-playground
+# GraphQL Playground for your mdbook
+
+---
 
 [<img src="https://img.shields.io/badge/Docs-mdBook-brightgreen">](https://aschaeffer.github.io/mdbook-preprocessor-graphql-playground/)
 [![Crate](https://img.shields.io/crates/v/mdbook-preprocessor-graphql-playground.svg)](https://crates.io/crates/mdbook-preprocessor-graphql-playground)
@@ -8,7 +10,11 @@
 [<img src="https://img.shields.io/github/languages/code-size/aschaeffer/mdbook-preprocessor-graphql-playground">]()
 [![downloads](https://img.shields.io/crates/d/mdbook-preprocessor-graphql-playground.svg)](https://crates.io/crates/mdbook-preprocessor-graphql-playground)
 
-> A preprocessor for mdbook to add GraphQL playgrounds.
+---
+
+A preprocessor for mdbook to add [GraphQL playground](https://github.com/graphql/graphql-playground).
+
+---
 
 [![preview](book/src/images/screenshot.png)](book/src/images/screenshot.png)
 

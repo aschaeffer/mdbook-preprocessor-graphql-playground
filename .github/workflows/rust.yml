@@ -3,41 +3,63 @@ name: Rust
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - "book/**"
+    paths:
+      - "src/**/*.rs"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "CHANGELOG.md"
+      - ".github/workflows/rust.yml"
   pull_request:
     branches: [ main ]
-    paths-ignore:
-      - "book/**"
+    paths:
+      - "src/**/*.rs"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "CHANGELOG.md"
+      - ".github/workflows/rust.yml"
 
 env:
   CARGO_TERM_COLOR: always
+  SCCACHE_GHA_ENABLED: "true"
+  RUSTC_WRAPPER: "sccache"
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install latest stable
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        override: true
-    - name: Build
-      run: cargo build --release --verbose
-    - name: Run tests
-      run: cargo test --release --verbose
-
-  rustfmt:
+  formatting:
     name: Verify code formatting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: hecrj/setup-rust-action@v1
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
         with:
-          rust-version: stable
           components: rustfmt
       - run: cargo fmt --all -- --check
+  check_changelog:
+    name: Check Changelog
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tarides/changelog-check-action@v3
+        with:
+          changelog: CHANGELOG.md
+  lint:
+    name: Lint
+    needs: [ formatting, check_changelog ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+      - uses: mozilla-actions/sccache-action@v0.0.6
+      - run: cargo clippy
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    needs: [ lint ]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: mozilla-actions/sccache-action@v0.0.6
+      - run: cargo build --release --verbose
+      - run: cargo test --release --verbose

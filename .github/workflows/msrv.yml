@@ -4,15 +4,11 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "crates/**/*.rs"
-      - "crates/**/Cargo.toml"
       - "Cargo.toml"
       - ".github/workflows/msrv.yml"
   pull_request:
     branches: [ main ]
     paths:
-      - "crates/**/*.rs"
-      - "crates/**/Cargo.toml"
       - "Cargo.toml"
       - ".github/workflows/msrv.yml"
 
@@ -24,14 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - name: VCS Checkout
-        uses: actions/checkout@v4
-      - name: Install rust toolchain
-        uses: dtolnay/rust-toolchain@master
-        with:
-          toolchain: nightly-2024-08-19
-      - name: Install cargo msrv
-        uses: taiki-e/cache-cargo-install-action@v2
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: taiki-e/cache-cargo-install-action@v2
         with:
           tool: cargo-msrv@0.16.0-beta.25
       - name: Version of cargo msrv

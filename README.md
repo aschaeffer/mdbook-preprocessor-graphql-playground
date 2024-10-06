@@ -1,5 +1,7 @@
 # GraphQL Playground for your mdbook
 
+A preprocessor for [mdbook](https://github.com/rust-lang/mdBook) to add a [GraphQL playground](https://github.com/graphql/graphql-playground).
+
 ---
 
 [<img src="https://img.shields.io/badge/Docs-mdBook-brightgreen">](https://aschaeffer.github.io/mdbook-preprocessor-graphql-playground/)
@@ -9,10 +11,6 @@
 [<img src="https://img.shields.io/github/last-commit/aschaeffer/mdbook-preprocessor-graphql-playground">]()
 [<img src="https://img.shields.io/github/languages/code-size/aschaeffer/mdbook-preprocessor-graphql-playground">]()
 [![downloads](https://img.shields.io/crates/d/mdbook-preprocessor-graphql-playground.svg)](https://crates.io/crates/mdbook-preprocessor-graphql-playground)
-
----
-
-A preprocessor for mdbook to add [GraphQL playground](https://github.com/graphql/graphql-playground).
 
 ---
 

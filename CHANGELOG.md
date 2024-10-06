@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Improved CI and security
+- CI: Improved workflows and improved security
+- CI: Upgraded GitHub Actions
 
 ## [0.1.4] - 2023-09-07
 

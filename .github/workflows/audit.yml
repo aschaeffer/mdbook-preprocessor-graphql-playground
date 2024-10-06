@@ -3,14 +3,16 @@ on:
   push:
     branches: [ main ]
     paths:
-      - "crates/**/Cargo.toml"
       - "Cargo.toml"
+      - "Cargo.lock"
+      - "CHANGELOG.md"
       - ".github/workflows/audit.yml"
   pull_request:
     branches: [ main ]
     paths:
-      - "crates/**/Cargo.toml"
       - "Cargo.toml"
+      - "Cargo.lock"
+      - "CHANGELOG.md"
       - ".github/workflows/audit.yml"
   schedule:
     - cron: "0 12 * * 0"

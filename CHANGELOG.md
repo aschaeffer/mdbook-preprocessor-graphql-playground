@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - CI: Improved workflows and improved security
 - CI: Upgraded GitHub Actions
+- CI: Added dependabot
 - Upgraded dependencies
 
 ## [0.1.4] - 2024-09-07

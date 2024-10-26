@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## [0.1.5] - 2024-10-26
+
 ### Changed
 
 - CI: Improved workflows and improved security
 - CI: Upgraded GitHub Actions
+- Upgraded dependencies
 
-## [0.1.4] - 2023-09-07
+## [0.1.4] - 2024-09-07
 
 ### Changed
 

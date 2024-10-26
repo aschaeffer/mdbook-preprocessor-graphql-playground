@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI: Upgraded GitHub Actions
 - CI: Added dependabot
 - CI: Automatically update dependencies and set wip progress
-- CI: Automatically publish new versions to GitHub releases and crates.io
+- CI: Automatically publish new versions to GitHub Releases and crates.io
 
 ## [0.1.4] - 2024-09-07
 

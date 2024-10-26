@@ -43,7 +43,7 @@ jobs:
         with:
           bin: mdbook-graphql-playground
           target: ${{ matrix.target }}
-          include: CHANGELOG.md,CODE_OF_CONDUCT.md,CONTRIBUTING.md,LICENSE.md,README.md,
+          include: CHANGELOG.md,CODE_OF_CONDUCT.md,CONTRIBUTING.md,LICENSE.md,README.md
           tar: unix
           zip: windows
           leading_dir: true

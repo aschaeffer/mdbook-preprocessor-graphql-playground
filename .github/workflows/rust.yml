@@ -44,10 +44,11 @@ jobs:
       - uses: tarides/changelog-check-action@v3
         with:
           changelog: CHANGELOG.md
+    if: github.actor != 'dependabot[bot]'
   lint:
     name: Lint
     needs: [ formatting, check_changelog ]
-    runs-on: ubuntu-latest
+    if: always() && (!contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled'))
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -61,6 +62,7 @@ jobs:
     name: Build and test
     runs-on: ubuntu-22.04
     needs: [ lint ]
+    if: always() && (!contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled'))
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable

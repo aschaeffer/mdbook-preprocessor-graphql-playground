@@ -1,3 +1,3 @@
 # Why
 
-> Interactive Documentation: https://inexorgame.github.io/inexor-rgf-application/Plugins_Arithmetic.html
+> Interactive Documentation: [https://docs.reactive-graph.io/book/GraphQL_API_Components.html](https://docs.reactive-graph.io/book/GraphQL_API_Components.html)

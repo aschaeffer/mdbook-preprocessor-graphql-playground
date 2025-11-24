@@ -9,7 +9,7 @@ readme = "README.md"
 repository = "https://github.com/aschaeffer/mdbook-preprocessor-graphql-playground"
 documentation = "https://aschaeffer.github.io/mdbook-preprocessor-graphql-playground/"
 keywords = ["mdbook", "mdbook-plugins", "mdbook-preprocessor", "graphql", "playground"]
-rust-version = "1.85.0"
+rust-version = "1.88.0"
 
 [dependencies]
 anyhow = "1.0"

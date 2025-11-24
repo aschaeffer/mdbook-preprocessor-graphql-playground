@@ -1,12 +1,12 @@
 use chrono::Local;
 use env_logger::Builder;
-use log::{error, warn, LevelFilter};
+use log::{LevelFilter, error, warn};
 use mdbook_preprocessor::book::{Book, BookItem};
 use mdbook_preprocessor::errors::Result;
 use mdbook_preprocessor::{Preprocessor, PreprocessorContext};
 use std::collections::HashMap;
 use std::env;
-use tera::{to_value, Context, Tera, Value};
+use tera::{Context, Tera, Value, to_value};
 use uuid::Uuid;
 
 fn main() {

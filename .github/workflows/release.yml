@@ -25,7 +25,7 @@ jobs:
     name: Create Release
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: taiki-e/create-gh-release-action@v1
         with:
           changelog: CHANGELOG.md
@@ -35,7 +35,7 @@ jobs:
     needs: [ create-release ]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
@@ -52,7 +52,7 @@ jobs:
     name: Publish on crates.io
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable

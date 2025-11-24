@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: VCS Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Audit Rust Dependencies
         uses: rustsec/audit-check@v2.0.0
         with:

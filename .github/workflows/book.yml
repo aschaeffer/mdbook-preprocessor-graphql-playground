@@ -42,6 +42,8 @@ jobs:
         uses: taiki-e/cache-cargo-install-action@v2
         with:
           tool: mdbook-preprocessor-graphql-playground
+          git: https://github.com/aschaeffer/mdbook-preprocessor-graphql-playground
+          rev: ae45175665085f8924ca06354c56cf00c4698c6b
       - name: Build Book
         working-directory: ./book
         run: mdbook build

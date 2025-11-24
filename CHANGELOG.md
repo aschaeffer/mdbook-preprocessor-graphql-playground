@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Breaking Change** Upgraded to mdbook 0.5.1
-- Upgraded dependencies
+- Upgraded dependencies and lock file
 - Upgraded to rust edition 2024
 - CI: Upgraded GitHub Actions
 

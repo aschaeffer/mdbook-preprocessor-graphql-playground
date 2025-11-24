@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Breaking Change** Upgraded to mdbook 0.5.1
 - Upgraded dependencies
+- Upgraded to rust edition 2024
 - CI: Upgraded GitHub Actions
 
 ## [0.1.5] - 2024-10-26

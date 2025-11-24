@@ -56,7 +56,7 @@ jobs:
         with:
           components: clippy
       - uses: Swatinem/rust-cache@v2
-      - uses: mozilla-actions/sccache-action@v0.0.6
+      - uses: mozilla-actions/sccache-action@v0.0.9
       - run: cargo clippy
   build:
     name: Build and test
@@ -67,6 +67,6 @@ jobs:
       - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
-      - uses: mozilla-actions/sccache-action@v0.0.6
+      - uses: mozilla-actions/sccache-action@v0.0.9
       - run: cargo build --release --verbose
       - run: cargo test --release --verbose

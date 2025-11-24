@@ -1,9 +1,9 @@
 use chrono::Local;
 use env_logger::Builder;
 use log::{error, warn, LevelFilter};
-use mdbook::book::Book;
-use mdbook::preprocess::{Preprocessor, PreprocessorContext};
-use mdbook::BookItem;
+use mdbook_preprocessor::book::{Book, BookItem};
+use mdbook_preprocessor::errors::Result;
+use mdbook_preprocessor::{Preprocessor, PreprocessorContext};
 use std::collections::HashMap;
 use std::env;
 use tera::{to_value, Context, Tera, Value};
@@ -11,9 +11,35 @@ use uuid::Uuid;
 
 fn main() {
     init_logging();
-    mdbook_preprocessor_boilerplate::run(GraphQLPlaygroundPreprocessor, "A preprocessor for mdbook to add GraphQL playgrounds.");
+
+    let mut args = std::env::args().skip(1);
+    match args.next().as_deref() {
+        Some("supports") => {
+            // Supports all renderers.
+            return;
+        }
+        Some(arg) => {
+            eprintln!("unknown argument: {arg}");
+            std::process::exit(1);
+        }
+        None => {}
+    }
+
+    if let Err(e) = handle_preprocessing() {
+        eprintln!("{e}");
+        std::process::exit(1);
+    }
 }
 
+pub fn handle_preprocessing() -> Result<()> {
+    let pre = GraphQLPlaygroundPreprocessor;
+    let (ctx, book) = mdbook_preprocessor::parse_input(std::io::stdin())?;
+
+    let processed_book = pre.run(&ctx, book)?;
+    serde_json::to_writer(std::io::stdout(), &processed_book)?;
+
+    Ok(())
+}
 struct GraphQLPlaygroundPreprocessor;
 
 impl Preprocessor for GraphQLPlaygroundPreprocessor {
@@ -35,10 +61,6 @@ impl Preprocessor for GraphQLPlaygroundPreprocessor {
             }
         });
         Ok(book)
-    }
-
-    fn supports_renderer(&self, renderer: &str) -> bool {
-        renderer != "not-supported"
     }
 }
 

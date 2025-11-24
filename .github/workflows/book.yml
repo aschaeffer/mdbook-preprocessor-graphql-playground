@@ -25,6 +25,9 @@ jobs:
   book:
     name: Book
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mdbook-version: [ "0.5.1", "latest" ]
     steps:
       - uses: actions/checkout@v6
         with:
@@ -34,7 +37,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v2
         with:
-          mdbook-version: 'latest'
+          mdbook-version: ${{ matrix.mdbook-version }}
       - name: Install preprocessor mdbook-preprocessor-graphql-playground
         uses: taiki-e/cache-cargo-install-action@v2
         with:

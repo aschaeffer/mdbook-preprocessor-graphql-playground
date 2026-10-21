@@ -41,7 +41,7 @@ jobs:
     name: Check Changelog
     runs-on: ubuntu-22.04
     steps:
-      - uses: tarides/changelog-check-action@v3
+      - uses: tarides/changelog-check-action@v4
         with:
           changelog: CHANGELOG.md
     if: github.actor != 'dependabot[bot]'

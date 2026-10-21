@@ -39,7 +39,7 @@ jobs:
         with:
           mdbook-version: ${{ matrix.mdbook-version }}
       - name: Install preprocessor mdbook-preprocessor-graphql-playground
-        uses: taiki-e/cache-cargo-install-action@v2
+        uses: taiki-e/cache-cargo-install-action@v3
         with:
           tool: mdbook-preprocessor-graphql-playground
           git: https://github.com/aschaeffer/mdbook-preprocessor-graphql-playground
